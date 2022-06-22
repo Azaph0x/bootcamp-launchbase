@@ -1,3 +1,7 @@
+/*
+    link : https://github.com/rocketseat-education/bootcamp-launchbase-desafios-01/blob/master/desafios/01-4-aplicacao-operacoes-bancarias.md
+*/
+
 const type = "credit" || "debit ";
 
 const user = {
