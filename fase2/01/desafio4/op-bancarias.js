@@ -2,8 +2,6 @@
     link : https://github.com/rocketseat-education/bootcamp-launchbase-desafios-01/blob/master/desafios/01-4-aplicacao-operacoes-bancarias.md
 */
 
-const type = "credit" || "debit ";
-
 const user = {
   name: "Mariana",
   transactions: [],
@@ -12,13 +10,16 @@ const user = {
 
 function createTransaction({ type, value }) {
   const transaction = { type, value };
+
   if (type === "credit") {
     user.transactions.push(transaction);
     user.balance += value;
+
   } else if (type === "debit") {
     user.transactions.push(transaction);
     user.balance -= value;
   }
+
 }
 
 function getHigherTransactionByType(type) {
@@ -68,10 +69,7 @@ createTransaction({ type: "debit", value: 80 });
 createTransaction({ type: "debit", value: 30 });
 
 console.log(user.balance);
-
 console.log(getHigherTransactionByType("credit"));
 console.log(getHigherTransactionByType("debit"));
-
 console.log(getAverageTransactionValue());
-
 console.log(getTransactionsCount());
