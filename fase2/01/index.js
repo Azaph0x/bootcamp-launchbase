@@ -1,65 +1,85 @@
-// Criar um programar que calcula a media
-// das notas entre os alunos e envia
-// mensagem dos calculo da media...
-
-const TurmaA = {
-    nome: 'Turma A',
-    alunos: [
+const classA = {
+  name: "Turma A",
+  students: [
     {
-        nome: 'Joao',
-        nota: 9.1  
+      name: "Joao",
+      grade: 9.1,
     },
     {
-        nome: 'Marcos',
-        nota: 7.1
+      name: "Marcos",
+      grade: 7.1,
     },
     {
-        nome: 'Rodrigo',
-        nota: 5.1
-    }
-]
-}
+      name: "Rodrigo",
+      grade: 5.1,
+    },
+  ],
+};
 
-
-const TurmaB = {
-    nome: 'Turma A',
-    alunos: [
+const classB = {
+  name: "Turma A",
+  students: [
     {
-        nome: 'Mario',
-        nota: 5.1  
+      name: "Mario",
+      grade: 5.1,
     },
     {
-        nome: 'Maria',
-        nota: 3.1
+      name: "Maria",
+      grade: 3.1,
     },
     {
-        nome: 'Polo',
-        nota: 4.1
-    }
-]
+      name: "Polo",
+      grade: 4.1,
+    },
+  ],
+};
+
+function calcAverage(students) {
+  let sum = 0;
+
+  for (let s in students) {
+    sum += students[s].grade;
+  }
+
+  const average = sum / students.length;
+
+  return average;
 }
 
-function calcMedia(alunos) {
-    let soma = 0;
-    for(let i in alunos) {
-        soma += alunos[i].nota;
-    }
-
-    return soma / alunos.length;
+function sendMessage(className, average) {
+  if (average > 5) {
+    console.log(`${className} average ${average}. Congrats`);
+  } else {
+    console.log(`${className} average ${average}. Is not good.`);
+  }
 }
 
-function enviarMensagem(turma, media) {
-    if(media > 5) {
-        console.log(`Parabens ${turma} a media da turma foi de ${media}`);
-    } else {
-        console.log('Infelizmente a media da turma foi menor que 5 :C');
-    }
-    
+function markAsFlunked(student) {
+  student.Flunked = false;
+
+  if (student.grade < 5) {
+    student.Flunked = true;
+  }
 }
 
+function sendFlunkedMessage(student) {
+  if (student.Flunked) {
+    console.log(`The student ${student.name} is flunked!`);
+  }
+}
 
-const mediaA = calcMedia(TurmaA.alunos);
-const mediaB = calcMedia(TurmaB.alunos);
+function studentsFlunked(students) {
+  for (let student of students) {
+    markAsFlunked(student);
+    sendFlunkedMessage(student);
+  }
+}
 
-enviarMensagem(TurmaA.nome, mediaA);
-enviarMensagem(TurmaB.nome, mediaB);
+const averageA = calcAverage(classA.students);
+const averageB = calcAverage(classB.students);
+
+sendMessage(classA.name, averageA);
+sendMessage(classB.name, averageB);
+
+studentsFlunked(classA.students);
+studentsFlunked(classB.students);
