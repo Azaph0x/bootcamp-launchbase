@@ -26,10 +26,8 @@ function getHigherTransactionByType(type) {
   let highValue = 0;
 
   for (transaction of user.transactions) {
-    if (transaction.type === type) {
-      if (highValue <= transaction.value) {
+      if (transaction.type === type && highValue < transaction.value) {
         highValue = transaction.value;
-      }
     }
   }
 
